@@ -12,10 +12,20 @@ export default function App() {
     { key: Math.random().toString(), value: goal }
   ])
 
+  const deleteGoal = (goalId) =>
+    setGoals(currentGoals =>
+      currentGoals.filter(item => item.key !== goalId)
+    )
+
   return (
     <View style={styles.container}>
       <GoalInput addGoal={addGoal} />
-      <FlatList data={goals} renderItem={text => <GoalItem title={text.item.value} />}>
+      <FlatList data={goals} renderItem={text =>
+        <GoalItem
+          title={text.item.value}
+          deleteItem={deleteGoal.bind(this, text.item.key)}
+        />
+      }>
       </FlatList>
     </View>
   );
