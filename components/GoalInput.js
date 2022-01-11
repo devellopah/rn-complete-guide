@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native'
+import { View, TextInput, Button, StyleSheet, Modal } from 'react-native'
 
 
 const styles = StyleSheet.create({
@@ -14,16 +14,18 @@ export default props => {
   const onTextChange = (text) => setGoal(text)
 
   return (
-    <View style={styles.formControl}>
-      <TextInput
-        placeholder="Course Goal"
-        onChangeText={onTextChange}
-        value={goal}
-      />
-      <Button
-        title="Add"
-        onPress={props.addGoal.bind(this, goal)}
-      />
-    </View>
+    <Modal visible={props.isModalVisible} animationType="fade">
+      <View style={styles.formControl}>
+        <TextInput
+          placeholder="Course Goal"
+          onChangeText={onTextChange}
+          value={goal}
+        />
+        <Button
+          title="Add"
+          onPress={props.addGoal.bind(this, goal)}
+        />
+      </View>
+    </Modal>
   )
 }
