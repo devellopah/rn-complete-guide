@@ -8,15 +8,25 @@ export default function App() {
   const [goals, setGoals] = useState([])
   const [isAddMode, setAddMode] = useState(false)
 
-  const addGoal = (goal) => setGoals(currentGoals => [
-    ...currentGoals,
-    { key: Math.random().toString(), value: goal }
-  ])
+  const addGoal = (goal) => {
+    setGoals(currentGoals => [
+      ...currentGoals,
+      { key: Math.random().toString(), value: goal }
+    ])
 
-  const deleteGoal = (goalId) =>
+    setAddMode(false)
+  }
+
+  const deleteGoal = (goalId) => {
     setGoals(currentGoals =>
       currentGoals.filter(item => item.key !== goalId)
     )
+  }
+
+
+  const cancelGoalAddition = () => {
+    setAddMode(false)
+  }
 
   return (
     <View style={styles.container}>
@@ -26,6 +36,7 @@ export default function App() {
       />
       <GoalInput
         addGoal={addGoal}
+        onCancel={cancelGoalAddition}
         isModalVisible={isAddMode}
       />
       <FlatList data={goals} renderItem={text =>
