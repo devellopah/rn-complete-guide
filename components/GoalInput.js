@@ -16,12 +16,13 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   button: {
-    // marginLeft: 8,
-    // marginRight: 8,
-    // margin: 8,
+    marginLeft: 8,
+    width: '40%',
   },
   btnGroup: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: '60%'
   }
 })
 export default props => {
@@ -43,17 +44,19 @@ export default props => {
           value={goal}
         />
         <View style={styles.btnGroup}>
-          <Button
-            style={styles.button}
-            title="Add"
-            onPress={addGoal}
-          />
-          <Button
-            style={styles.button}
-            title="Cancel"
-            color="red"
-            onPress={props.onCancel}
-          />
+          <View style={styles.button}>
+            <Button
+              title="Add"
+              onPress={addGoal}
+            />
+          </View>
+          <View style={styles.button}>
+            <Button
+              title="Cancel"
+              color="red"
+              onPress={props.onCancel}
+            />
+          </View>
         </View>
       </View>
     </Modal>
